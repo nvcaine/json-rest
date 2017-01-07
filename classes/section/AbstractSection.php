@@ -2,14 +2,16 @@
 abstract class AbstractSection
 {
 	protected $appFacade;
+	protected $view;
 
-	public function __construct(AppFacade $facade)
-	{
+	public function __construct(AppFacade $facade, AbstractView $view) {
+
 		$this->appFacade = $facade;
+		$this->view = $view;
 	}
 
-	public function run()
-	{
+	public function run() {
+
 		$this->setHeader();
 
 		if(!isset($_SERVER["REQUEST_METHOD"]))
@@ -27,26 +29,15 @@ abstract class AbstractSection
 		}
 	}
 
-	public function runGetMethod($params)
-	{
-	}
+	public function runGetMethod($params) {}
 
-	public function runPostMethod($params)
-	{
-	}
+	public function runPostMethod($params) {}
 
-	public function runPutMethod($params)
-	{
-	}
+	public function runPutMethod($params) {}
 
-	public function runDeleteMethod($params)
-	{
-	}
+	public function runDeleteMethod($params) {}
 
-	protected function setHeader()
-	{
-		header("Content-type: application/json");
+	protected function setHeader() {
+		//header("Content-type: application/json");
 	}
 }
-
-?>

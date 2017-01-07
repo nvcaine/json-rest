@@ -2,8 +2,8 @@
 class SectionDTO
 {
 	public $name;
-	//public $templateName;
-	//public $title;
+	public $title;
+	public $menuLabel;
 
 	public function __construct($obj = null)
 	{
@@ -14,8 +14,10 @@ class SectionDTO
 	protected function parseObj($xml)
 	{
 		$this->name = $xml->sectionName;
-		//$this->templateName = $xml->templateName;
-		//$this->title = $xml->title;
+		$this->title = $xml->title;
+
+		if(isset($xml->menuLabel))
+			$this->menuLabel = $xml->menuLabel;
 	}
 }
 
