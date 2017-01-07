@@ -3,7 +3,7 @@ class Autoloader
 {
 	static private $pathName = "";
 	static private $className = "";
-	static private $ignore = array('.', '..', 'cgi-bin', '.svn', '.git', 'templates', 'compile');
+	static private $ignore = array('.', '..', 'cgi-bin', '.svn', 'templates', 'compile');
 
 	static public function init($path)
 	{

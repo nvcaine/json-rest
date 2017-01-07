@@ -33,11 +33,25 @@ class DBWrapper
 		return clone DBWrapper::$instace;
 	}
 
-	public function query($queryTemplate, $params = null, $class = null, $fetch = true)
+	public function query($queryTemplate, $params = null, $class = null, $fetch = true, $limit = 0, $offset = 0)
 	{
 		$query = $this->pdo->prepare($queryTemplate);
-		$query->execute($params);
 
+		if($limit > 0)
+			$query->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
+
+		if($offset > 0)
+			$query->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
+
+		if($limit > 0 || $offset > 0) {
+			foreach($params as $key => $value)
+				$query->bindValue(':' . $key, $value);
+			$query->execute();
+		}
+		else
+			$query->execute($params);
+
+		//$query->debugDumpParams();
 		$this->affectedRows = $query->rowCount();
 
 		if(!$fetch)
@@ -63,7 +77,7 @@ class DBWrapper
 	{
 		try
 		{
-			$this->pdo = new PDO("mysql:host=".DBWrapper::$host.";dbname=".DBWrapper::$dbName, DBWrapper::$user, DBWrapper::$pass);
+			$this->pdo = new PDO("mysql:host=".DBWrapper::$host.";dbname=".DBWrapper::$dbName.";charset=utf8mb4", DBWrapper::$user, DBWrapper::$pass);
     		$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     	}
     	catch(PDOException $e)

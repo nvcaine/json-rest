@@ -17,6 +17,7 @@ class SettingsManager
 
 	public function loadSettings()
 	{
+		//$xml = simplexml_load_file($this->settingsFileName);
 		$json = json_decode(file_get_contents($this->settingsFileName));
 
 		$this->parseSettings($json);
