@@ -49,9 +49,6 @@ class AppFacade
 	protected function runSectionController(SectionDTO $section)
 	{
 		$controllerClassName = ucfirst($section->name) . "Section";
-		$viewClassName = ucfirst($section->name) . "View";
-
-		$view = new $viewClassName($this, $section);
 
 		$section = new $controllerClassName($this, $view);
 		$section->run();
