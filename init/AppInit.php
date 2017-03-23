@@ -23,7 +23,9 @@ class AppInit
 						'templates',
 						'compile',
 						'.',
-						'..');
+						'..',
+						'.git',
+						'README.md');
 
 		$this->parseFolderItems($appFolder, $ignore);
 
