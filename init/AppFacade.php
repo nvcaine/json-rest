@@ -50,7 +50,7 @@ class AppFacade
 	{
 		$controllerClassName = ucfirst($section->name) . "Section";
 
-		$section = new $controllerClassName($this, $view);
+		$section = new $controllerClassName($this);
 		$section->run();
 	}
 }

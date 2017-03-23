@@ -2,12 +2,10 @@
 abstract class AbstractSection
 {
 	protected $appFacade;
-	protected $view;
 
-	public function __construct(AppFacade $facade, AbstractView $view) {
+	public function __construct(AppFacade $facade) {
 
 		$this->appFacade = $facade;
-		$this->view = $view;
 	}
 
 	public function run() {
@@ -38,6 +36,6 @@ abstract class AbstractSection
 	public function runDeleteMethod($params) {}
 
 	protected function setHeader() {
-		//header("Content-type: application/json");
+		header("Content-type: application/json");
 	}
 }
